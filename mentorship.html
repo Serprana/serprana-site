@@ -11,493 +11,328 @@
 <meta property="og:description" content="A private 1:1 mentorship for those who feel the energy and are ready to learn how to work with it." />
 <meta property="og:image" content="https://serprana.com/assets/hero.jpg" />
 <meta property="og:url" content="https://serprana.com/mentorship.html" />
-
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
-
 <style>
   :root {
-    --cream:       #FAF7F2;
-    --cream-deep:  #F0EBF8;
-    --peri-light:  #E8E4F4;
-    --peri-mid:    #C4B8E8;
-    --peri:        #8C78C8;
-    --peri-deep:   #6B5FA0;
-    --gold:        #B8A064;
-    --gold-light:  #D4B87A;
-    --gold-pale:   #EDE0C0;
-    --ink:         #2A1F3C;
-    --ink-soft:    #5A4F7A;
-    --ink-dim:     #8A7FA0;
-    --font-display:'Cormorant Garamond','Iowan Old Style',Georgia,serif;
-    --font-label:  'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
-    --gutter:      max(24px,4vw);
-    --page-max:    1100px;
+    --cream:     #FAF7F2;
+    --peri-bg:   #F0EBF8;
+    --peri:      #5A4890;
+    --peri-mid:  #7B6BB5;
+    --peri-pale: #9B8AC4;
+    --gold:      #B8A064;
+    --gold-lt:   #D4B87A;
+    --ink:       #2A1F3C;
+    --ink-soft:  #5A4F6A;
+    --ink-dim:   #8A80A0;
+    --border:    rgba(184,160,100,0.2);
+    --font-d:    'Cormorant Garamond','Iowan Old Style',Georgia,serif;
+    --font-l:    'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    --gutter:    max(20px,4vw);
+    --max:       800px;
   }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-  body { background: var(--cream); color: var(--ink); font-family: var(--font-display); font-size: clamp(1rem,1.15vw,1.1rem); line-height: 1.7; overflow-x: hidden; }
-  a { color: inherit; text-decoration: none; }
-
-  /* Gold gradient text utility */
-  .gold-text {
-    background: linear-gradient(135deg,#B8A064,#D4B87A,#C4A855,#D4B87A);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .peri-text { color: var(--peri-deep); }
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; -webkit-font-smoothing:antialiased; }
+  body { background:var(--cream); color:var(--ink); font-family:var(--font-d); font-size:clamp(1rem,1.1vw,1.08rem); line-height:1.75; overflow-x:hidden; }
+  a { color:inherit; text-decoration:none; }
+  img { max-width:100%; display:block; }
 
   /* Nav */
-  .nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 40;
-    padding: 1.1rem var(--gutter);
-    display: flex; align-items: center; justify-content: space-between;
-    background: rgba(250,247,242,0.92); backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(184,160,100,0.15);
-  }
-  .nav__logo img { width: 40px; height: auto; }
-  .nav__back { font-family: var(--font-label); font-size: 0.68rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-dim); display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
-  .nav__back:hover { color: var(--peri); }
-  .nav__cta { font-family: var(--font-label); font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; padding: 0.55rem 1.2rem; background: linear-gradient(135deg,var(--peri),var(--peri-deep)); color: #fff; border-radius: 999px; transition: opacity 0.2s; }
-  .nav__cta:hover { opacity: 0.85; }
+  .nav { position:fixed; top:0; left:0; right:0; z-index:40; padding:1rem var(--gutter); display:flex; align-items:center; justify-content:space-between; background:rgba(250,247,242,0.95); backdrop-filter:blur(10px); border-bottom:1px solid var(--border); }
+  .nav__logo img { width:38px; height:auto; }
+  .nav__back { font-family:var(--font-l); font-size:0.68rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--ink-dim); display:flex; align-items:center; gap:0.4rem; transition:color 0.2s; }
+  .nav__back:hover { color:var(--peri); }
+  .nav__cta { font-family:var(--font-l); font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; padding:0.5rem 1.1rem; background:var(--peri); color:#fff; border-radius:999px; }
 
-  /* Reveals */
-  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
-  .reveal.is-visible { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) { .reveal { opacity:1!important; transform:none!important; } }
+  /* Reveal */
+  .reveal { opacity:0; transform:translateY(16px); transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.is-visible { opacity:1; transform:none; }
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important;}}
 
-  /* Container */
-  .container { max-width: var(--page-max); margin: 0 auto; padding: 0 var(--gutter); }
-  .narrow { max-width: 700px; margin-left: auto; margin-right: auto; }
+  /* Layout */
+  .page { max-width:var(--max); margin:0 auto; padding:0 var(--gutter); }
 
   /* Symbol divider */
-  .symbol-divider { display: flex; align-items: center; justify-content: center; gap: 1.25rem; padding: 2.5rem 0; }
-  .symbol-divider::before, .symbol-divider::after { content:''; flex:1; height:1px; background: linear-gradient(90deg,transparent,rgba(184,160,100,0.3),transparent); }
+  .sym { display:flex; align-items:center; justify-content:center; gap:0.9rem; padding:1.75rem 0; opacity:0.5; }
+  .sym::before, .sym::after { content:''; flex:1; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
 
-  /* HERO */
-  .hero {
-    min-height: 100vh; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; text-align: center;
-    padding: 9rem var(--gutter) 6rem;
-    background: linear-gradient(160deg, #F5F0FF 0%, #EDE8FA 30%, #F8F3E8 70%, #FDF9F0 100%);
-    position: relative; overflow: hidden;
-  }
-  .hero::before {
-    content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);
-    width:700px;height:700px;
-    background:radial-gradient(ellipse,rgba(140,120,200,0.12) 0%,transparent 65%);
-    pointer-events:none;
-  }
-  .hero::after {
-    content:'';position:absolute;bottom:-80px;right:5%;
-    width:400px;height:400px;
-    background:radial-gradient(ellipse,rgba(184,160,100,0.1) 0%,transparent 65%);
-    pointer-events:none;
-  }
-  .hero__eyebrow { font-family:var(--font-label); font-size:0.68rem; letter-spacing:0.38em; text-transform:uppercase; color:var(--gold); margin-bottom:1.75rem; }
-  .hero__title { font-family:var(--font-display); font-style:italic; font-weight:400; font-size:clamp(2.4rem,5.5vw,4.5rem); line-height:1.08; max-width:18ch; margin:0 auto 1.5rem; color:var(--peri-deep); }
-  .hero__title span { display:block; background:linear-gradient(135deg,#B8A064,#D4B87A,#B8A064); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-  .hero__sub { font-family:var(--font-display); font-style:italic; font-size:clamp(1.1rem,1.6vw,1.35rem); color:var(--ink-soft); max-width:44ch; margin:0 auto 3rem; line-height:1.65; }
-  .hero__cta { display:inline-flex; align-items:center; gap:0.75rem; font-family:var(--font-label); font-size:0.72rem; letter-spacing:0.26em; text-transform:uppercase; padding:1.1rem 2.4rem; background:linear-gradient(135deg,var(--peri),var(--peri-deep)); color:#fff; border-radius:999px; box-shadow:0 8px 30px rgba(140,120,200,0.25); transition:all 0.3s; }
-  .hero__cta:hover { transform:translateY(-2px); box-shadow:0 12px 40px rgba(140,120,200,0.35); }
-  .hero__scroll { margin-top:3.5rem; display:flex; flex-direction:column; align-items:center; gap:0.6rem; font-family:var(--font-label); font-size:0.6rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--ink-dim); }
-  .hero__scroll-line { width:1px; height:36px; background:linear-gradient(180deg,var(--gold),transparent); }
+  /* Hero */
+  .hero { padding:8rem var(--gutter) 3.5rem; text-align:center; background:linear-gradient(160deg,#F5F0FF 0%,#EDE8FA 50%,#FAF7F0 100%); }
+  .hero__eyebrow { font-family:var(--font-l); font-size:0.66rem; letter-spacing:0.36em; text-transform:uppercase; color:var(--gold); margin-bottom:1.25rem; display:block; }
+  .hero__title { font-family:var(--font-d); font-style:italic; font-weight:400; font-size:clamp(2rem,4.5vw,3.2rem); line-height:1.15; color:var(--peri); margin-bottom:1.25rem; }
+  .hero__sub { font-family:var(--font-d); font-style:italic; font-size:clamp(1.05rem,1.4vw,1.2rem); color:var(--ink-soft); max-width:44ch; margin:0 auto 2.25rem; }
+  .btn { display:inline-flex; align-items:center; gap:0.6rem; font-family:var(--font-l); font-size:0.7rem; letter-spacing:0.24em; text-transform:uppercase; padding:0.9rem 2rem; border-radius:999px; transition:all 0.25s; }
+  .btn--gold { background:linear-gradient(135deg,var(--gold),var(--gold-lt)); color:#fff; box-shadow:0 4px 16px rgba(184,160,100,0.25); }
+  .btn--gold:hover { transform:translateY(-1px); box-shadow:0 6px 22px rgba(184,160,100,0.35); }
+  .btn--peri { background:var(--peri); color:#fff; }
+  .btn--peri:hover { background:var(--peri-mid); }
 
-  /* Section base */
-  .section { padding: clamp(5rem,10vh,8rem) 0; }
-  .section--peri { background: linear-gradient(160deg,#F0EBF8 0%,#EDE8F4 100%); }
-  .section--cream { background: var(--cream); }
-  .section--gold-pale { background: linear-gradient(160deg,#FDF8EE 0%,#FAF4E4 100%); }
+  /* Content sections */
+  .section { padding:3rem 0; }
+  .section + .section { border-top:1px solid var(--border); }
 
-  /* Eyebrow label */
-  .eyebrow { font-family:var(--font-label); font-size:0.68rem; letter-spacing:0.34em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:1.25rem; }
+  h2.section-title { font-family:var(--font-d); font-style:italic; font-weight:400; font-size:clamp(1.5rem,2.5vw,1.9rem); color:var(--peri); margin-bottom:0.75rem; line-height:1.25; }
+  h3.sub-title { font-family:var(--font-d); font-weight:500; font-size:clamp(1.1rem,1.6vw,1.3rem); color:var(--ink); margin-bottom:0.5rem; margin-top:1.5rem; }
+  p { margin-bottom:1em; color:var(--ink-soft); }
+  p:last-child { margin-bottom:0; }
+  em { font-style:italic; color:var(--peri-mid); }
+  strong { font-weight:500; color:var(--ink); font-family:var(--font-l); font-size:0.9em; letter-spacing:0.02em; }
 
-  /* Intro */
-  .intro-quote { font-family:var(--font-display); font-style:italic; font-size:clamp(1.4rem,2.6vw,2.1rem); line-height:1.4; color:var(--peri-deep); max-width:38ch; margin:0 auto 2rem; text-align:center; }
-  .body-text { font-size:1.05rem; line-height:1.75; color:var(--ink-soft); }
-  .body-text p { margin-bottom:1.1em; }
-  .body-text p:last-child { margin-bottom:0; }
+  /* Label */
+  .label { font-family:var(--font-l); font-size:0.64rem; letter-spacing:0.32em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:0.6rem; }
 
-  /* For You grid */
-  .for-you-grid { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; margin-top:2.5rem; }
-  .for-you-item { padding:1.75rem; border:1px solid rgba(140,120,200,0.2); border-radius:8px; background:rgba(255,255,255,0.7); }
-  .for-you-item p { font-family:var(--font-display); font-style:italic; font-size:1.05rem; color:var(--ink-soft); line-height:1.65; }
-  @media(max-width:620px){ .for-you-grid{grid-template-columns:1fr;} }
+  /* Bullet list */
+  ul.list { list-style:none; padding:0; margin:0.75rem 0 1rem; }
+  ul.list li { padding-left:1.1rem; position:relative; margin-bottom:0.35em; color:var(--ink-soft); font-size:1rem; line-height:1.65; }
+  ul.list li::before { content:''; position:absolute; left:0; top:0.68em; width:6px; height:1px; background:var(--gold); }
 
-  /* Session card */
-  .session-card { border-radius:12px; overflow:hidden; border:1px solid rgba(184,160,100,0.25); background:#fff; box-shadow:0 4px 30px rgba(140,120,200,0.08); margin-bottom:2rem; }
-  .session-card__header { padding:2.25rem 2.5rem; background:linear-gradient(135deg,#F4F0FC,#EDE8F8); border-bottom:1px solid rgba(184,160,100,0.15); }
-  .session-card__eyebrow { font-family:var(--font-label); font-size:0.62rem; letter-spacing:0.32em; text-transform:uppercase; color:var(--gold); margin-bottom:0.6rem; }
-  .session-card__title { font-family:var(--font-display); font-weight:500; font-size:clamp(1.5rem,2.5vw,2rem); color:var(--peri-deep); line-height:1.2; margin-bottom:0.4rem; }
-  .session-card__meta { font-family:var(--font-display); font-style:italic; color:var(--ink-dim); font-size:1rem; }
-  .session-card__price { font-family:var(--font-display); font-style:italic; font-size:1.4rem; background:linear-gradient(135deg,#B8A064,#D4B87A); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-top:0.6rem; }
-  .session-card__body { padding:2rem 2.5rem; }
-  .session-card__body p { color:var(--ink-soft); font-size:1.02rem; line-height:1.72; margin-bottom:0.9em; }
-  .session-card__body p:last-child { margin-bottom:0; }
-  .session-card__body p em { color:var(--peri-deep); font-style:italic; }
-  .session-card__outcomes { margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid rgba(184,160,100,0.15); }
-  .session-card__outcomes h4 { font-family:var(--font-label); font-size:0.62rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; }
-  .session-card__outcomes ul { list-style:none; padding:0; }
-  .session-card__outcomes li { font-family:var(--font-display); font-style:italic; color:var(--ink-soft); font-size:1.02rem; padding-left:1.2rem; position:relative; margin-bottom:0.45em; line-height:1.5; }
-  .session-card__outcomes li::before { content:''; position:absolute; left:0; top:0.65em; width:6px; height:1px; background:var(--gold); }
+  /* Price block */
+  .price-block { background:linear-gradient(135deg,#F4F0FC,#EDE8F8); border:1px solid rgba(140,120,200,0.2); border-radius:8px; padding:1.5rem 1.75rem; margin:1.5rem 0; }
+  .price-block__name { font-family:var(--font-d); font-weight:500; font-size:1.15rem; color:var(--peri); margin-bottom:0.2rem; }
+  .price-block__meta { font-family:var(--font-l); font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:0.75rem; }
+  .price-block__price { font-family:var(--font-d); font-style:italic; font-size:1.6rem; background:linear-gradient(135deg,#B8A064,#D4B87A); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:0.6rem; }
+  .price-block p { font-size:0.97rem; color:var(--ink-soft); }
+  .price-block ul.list { margin-top:0.5rem; }
 
-  /* Weeks */
-  .week { display:grid; grid-template-columns:72px 1fr; gap:2rem; padding:2.5rem 0; border-top:1px solid rgba(184,160,100,0.15); align-items:start; }
-  .week:last-child { border-bottom:1px solid rgba(184,160,100,0.15); }
-  .week__num { text-align:center; }
-  .week__num-label { font-family:var(--font-label); font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:0.2rem; }
-  .week__num-digit { font-family:var(--font-display); font-style:italic; font-size:2.6rem; color:rgba(140,120,200,0.2); line-height:1; display:block; }
-  .week__symbol { margin-top:0.75rem; display:flex; justify-content:center; }
-  .week h3 { font-family:var(--font-display); font-weight:500; font-size:clamp(1.2rem,1.8vw,1.5rem); color:var(--peri-deep); margin-bottom:0.75rem; }
-  .week p { color:var(--ink-soft); font-size:1rem; line-height:1.72; margin-bottom:0.75em; }
-  .week p:last-child { margin-bottom:0; }
-  @media(max-width:580px){ .week{grid-template-columns:1fr;gap:0.75rem;} .week__num{display:flex;align-items:baseline;gap:0.5rem;} }
-
-  /* Support block */
-  .support-block { background:linear-gradient(135deg,#F4F0FC,#EDE8F8); border:1px solid rgba(140,120,200,0.2); border-radius:10px; padding:2.25rem; margin-top:3rem; }
-  .support-block h3 { font-family:var(--font-display); font-weight:500; font-size:1.4rem; color:var(--peri-deep); margin-bottom:0.9rem; }
-  .support-block p { color:var(--ink-soft); font-size:1rem; line-height:1.72; margin-bottom:0.75em; }
-  .support-block p:last-child { margin-bottom:0; }
-
-  /* Continue cards */
-  .continue-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; margin-top:2.5rem; }
-  .continue-card { padding:2rem; border:1px solid rgba(184,160,100,0.2); border-radius:10px; background:#fff; }
-  .continue-card__price { font-family:var(--font-display); font-style:italic; font-size:1.5rem; background:linear-gradient(135deg,#B8A064,#D4B87A); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:0.4rem; }
-  .continue-card__title { font-family:var(--font-display); font-weight:500; font-size:1.1rem; color:var(--peri-deep); margin-bottom:0.3rem; }
-  .continue-card__meta { font-family:var(--font-label); font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:0.9rem; }
-  .continue-card p { font-size:0.96rem; color:var(--ink-soft); line-height:1.65; }
-  @media(max-width:760px){ .continue-grid{grid-template-columns:1fr;} }
+  /* Week row */
+  .week { display:grid; grid-template-columns:52px 1fr; gap:1.5rem; padding:1.5rem 0; border-top:1px solid var(--border); align-items:start; }
+  .week:last-child { border-bottom:1px solid var(--border); }
+  .week__num { text-align:center; padding-top:0.15rem; }
+  .week__num span { font-family:var(--font-d); font-style:italic; font-size:2rem; color:rgba(90,72,144,0.2); line-height:1; display:block; }
+  .week__num svg { margin:0.4rem auto 0; display:block; }
+  .week h3 { font-family:var(--font-d); font-weight:500; font-size:1.1rem; color:var(--peri); margin-bottom:0.5rem; margin-top:0; }
+  .week p { font-size:0.97rem; color:var(--ink-soft); margin-bottom:0.6em; }
+  @media(max-width:560px){.week{grid-template-columns:1fr;gap:0.5rem;}.week__num{display:flex;align-items:center;gap:0.75rem;}}
 
   /* Closing */
-  .closing { text-align:center; padding:clamp(6rem,14vh,11rem) 0; background:linear-gradient(160deg,#EDE8FA 0%,#F0EBF8 50%,#FDF8EE 100%); }
-  .closing__title { font-family:var(--font-display); font-style:italic; font-weight:400; font-size:clamp(1.8rem,4vw,3.2rem); line-height:1.2; max-width:22ch; margin:0 auto 1.25rem; color:var(--peri-deep); }
-  .closing__sub { font-family:var(--font-display); font-style:italic; color:var(--ink-soft); font-size:1.1rem; max-width:44ch; margin:0 auto 3rem; line-height:1.65; }
-  .closing__cta { display:inline-flex; align-items:center; gap:0.75rem; font-family:var(--font-label); font-size:0.72rem; letter-spacing:0.26em; text-transform:uppercase; padding:1.1rem 2.5rem; background:linear-gradient(135deg,#B8A064,#D4B87A); color:#fff; border-radius:999px; box-shadow:0 6px 24px rgba(184,160,100,0.3); transition:all 0.3s; }
-  .closing__cta:hover { transform:translateY(-2px); box-shadow:0 10px 32px rgba(184,160,100,0.4); }
-  .closing__alt { margin-top:1.5rem; font-family:var(--font-display); font-style:italic; color:var(--ink-dim); font-size:0.95rem; }
-  .closing__alt a { color:var(--peri); border-bottom:1px solid rgba(140,120,200,0.3); }
+  .closing { padding:3.5rem 0; text-align:center; border-top:1px solid var(--border); }
+  .closing h2 { font-family:var(--font-d); font-style:italic; font-weight:400; font-size:clamp(1.5rem,2.8vw,2.1rem); color:var(--peri); margin-bottom:0.75rem; line-height:1.25; }
+  .closing p { color:var(--ink-soft); max-width:44ch; margin:0 auto 2rem; font-style:italic; }
+  .closing__alt { margin-top:1rem; font-style:italic; font-size:0.95rem; color:var(--ink-dim); }
+  .closing__alt a { color:var(--peri-mid); border-bottom:1px solid rgba(123,107,181,0.3); }
 
   /* Footer */
-  .footer { background:var(--peri-light); padding:2.5rem var(--gutter); border-top:1px solid rgba(140,120,200,0.15); font-family:var(--font-label); font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-dim); }
-  .footer__inner { max-width:var(--page-max); margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:1.5rem; flex-wrap:wrap; }
+  .footer { background:var(--peri-bg); padding:2rem var(--gutter); border-top:1px solid rgba(140,120,200,0.15); font-family:var(--font-l); font-size:0.66rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-dim); }
+  .footer__inner { max-width:var(--max); margin:0 auto; display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; }
   .footer a:hover { color:var(--peri); }
-
-  /* Inline symbol helpers */
-  .sym { display:inline-flex; align-items:center; justify-content:center; opacity:0.55; vertical-align:middle; }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav class="nav">
-  <a href="index.html" class="nav__logo">
-    <img src="assets/logo.png" alt="SERPRANA" />
-  </a>
+  <a href="index.html" class="nav__logo"><img src="assets/logo.png" alt="SERPRANA" /></a>
   <a href="index.html" class="nav__back">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
     Back to Serprana
   </a>
   <a href="https://wa.me/50765652565" target="_blank" rel="noopener" class="nav__cta">WhatsApp</a>
 </nav>
 
 <!-- HERO -->
-<header class="hero">
-  <!-- Symbol cluster -->
-  <div style="display:flex;align-items:center;gap:1.25rem;margin-bottom:2.25rem;opacity:0.55;" class="reveal">
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="var(--peri-mid)"><path d="M8 1C4.13 1 1 4.13 1 8s3.13 7 7 7c.6 0 1.17-.09 1.71-.24C6.88 11.9 5.5 9.63 5.5 7c0-2.76 1.57-5.16 3.87-6.34A5.97 5.97 0 0 0 8 1z"/></svg>
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--gold)" stroke-width="1"><polygon points="10,1 19,17 1,17"/><polygon points="10,19 1,3 19,3"/></svg>
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--peri-mid)" stroke-width="1"><circle cx="9" cy="9" r="7.5"/><circle cx="9" cy="9" r="3"/><line x1="9" y1="1.5" x2="9" y2="4.5"/><line x1="9" y1="13.5" x2="9" y2="16.5"/><line x1="1.5" y1="9" x2="4.5" y2="9"/><line x1="13.5" y1="9" x2="16.5" y2="9"/></svg>
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--gold)" stroke-width="1"><polygon points="10,1 19,17 1,17"/><polygon points="10,19 1,3 19,3"/></svg>
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="var(--peri-mid)"><path d="M8 1C4.13 1 1 4.13 1 8s3.13 7 7 7c.6 0 1.17-.09 1.71-.24C6.88 11.9 5.5 9.63 5.5 7c0-2.76 1.57-5.16 3.87-6.34A5.97 5.97 0 0 0 8 1z"/></svg>
-  </div>
-
-  <p class="hero__eyebrow reveal">Kate Edelstein &nbsp;&middot;&nbsp; SERPRANA &nbsp;&middot;&nbsp; Nosara, Costa Rica</p>
-  <h1 class="hero__title reveal">
-    Intuitive &amp; Energetic
-    <span>Development</span>
-    Mentorship
-  </h1>
-  <p class="hero__sub reveal">A private 1:1 mentorship for those who feel the energy moving through their hands and are ready to learn how to work with it in a grounded, intentional way.</p>
-  <a href="https://wa.me/50765652565" target="_blank" rel="noopener" class="hero__cta reveal">
-    Begin with a conversation
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-  </a>
-  <div class="hero__scroll reveal">
-    <div class="hero__scroll-line"></div>
-    <span>Scroll</span>
-  </div>
-</header>
-
-<!-- SYMBOL DIVIDER -->
-<div class="container">
-  <div class="symbol-divider">
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="var(--peri-mid)"><path d="M8 1C4.13 1 1 4.13 1 8s3.13 7 7 7c.6 0 1.17-.09 1.71-.24C6.88 11.9 5.5 9.63 5.5 7c0-2.76 1.57-5.16 3.87-6.34A5.97 5.97 0 0 0 8 1z"/></svg>
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--gold)" stroke-width="1"><circle cx="9" cy="9" r="7.5"/><circle cx="9" cy="9" r="2.5" fill="rgba(184,160,100,0.3)"/></svg>
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="var(--peri-mid)"><path d="M8 1C4.13 1 1 4.13 1 8s3.13 7 7 7c.6 0 1.17-.09 1.71-.24C6.88 11.9 5.5 9.63 5.5 7c0-2.76 1.57-5.16 3.87-6.34A5.97 5.97 0 0 0 8 1z"/></svg>
-  </div>
-</div>
-
-<!-- INVITATION -->
-<section class="section section--cream">
-  <div class="container narrow reveal">
-    <span class="eyebrow" style="text-align:center;display:block;">An Invitation</span>
-    <p class="intro-quote">&ldquo;You&rsquo;re not looking for someone to convince you that this world exists. There is already a knowing within you.&rdquo;</p>
-    <div class="body-text" style="text-align:center; max-width:52ch; margin:0 auto;">
-      <p>This mentorship is for those who already feel a connection to channeling, energy work, and their intuitive or energetic abilities, and are ready to learn how to work with them in a grounded, intentional way.</p>
-      <p>You may not know where to begin, how to develop those abilities, or how to navigate them responsibly. What you&rsquo;re looking for is guidance. A space to explore, ask questions, learn foundational practices, and develop greater confidence and discernment.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SYMBOL DIVIDER -->
-<div class="container">
-  <div class="symbol-divider">
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--gold)" stroke-width="1"><polygon points="10,1 19,17 1,17"/><polygon points="10,19 1,3 19,3"/></svg>
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="var(--peri-mid)"><path d="M8 1C4.13 1 1 4.13 1 8s3.13 7 7 7c.6 0 1.17-.09 1.71-.24C6.88 11.9 5.5 9.63 5.5 7c0-2.76 1.57-5.16 3.87-6.34A5.97 5.97 0 0 0 8 1z"/></svg>
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--gold)" stroke-width="1"><polygon points="10,1 19,17 1,17"/><polygon points="10,19 1,3 19,3"/></svg>
-  </div>
-</div>
-
-<!-- FOR YOU -->
-<section class="section section--peri">
-  <div class="container narrow reveal">
-    <span class="eyebrow">This Is For You If&hellip;</span>
-    <div class="for-you-grid">
-      <div class="for-you-item">
-        <p>You already believe you have the ability to channel, sense or move energy, connect with spirit, or access other intuitive gifts.</p>
-      </div>
-      <div class="for-you-item">
-        <p>You may not know where to begin, how to develop those abilities, or how to navigate them responsibly.</p>
-      </div>
-      <div class="for-you-item">
-        <p>You want to explore your abilities, ask the questions that arise, and develop greater confidence and discernment in how you work with energy.</p>
-      </div>
-      <div class="for-you-item">
-        <p>You&rsquo;re ready to develop your own relationship with your abilities, with grounding, responsibility, discernment, and self-trust at the foundation.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SYMBOL DIVIDER -->
-<div class="container">
-  <div class="symbol-divider">
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--gold)" stroke-width="1"><circle cx="9" cy="9" r="7.5"/><circle cx="9" cy="9" r="2.5" fill="rgba(184,160,100,0.3)"/></svg>
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="var(--peri-mid)"><path d="M8 1C4.13 1 1 4.13 1 8s3.13 7 7 7c.6 0 1.17-.09 1.71-.24C6.88 11.9 5.5 9.63 5.5 7c0-2.76 1.57-5.16 3.87-6.34A5.97 5.97 0 0 0 8 1z"/></svg>
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--gold)" stroke-width="1"><circle cx="9" cy="9" r="7.5"/><circle cx="9" cy="9" r="2.5" fill="rgba(184,160,100,0.3)"/></svg>
-  </div>
-</div>
-
-<!-- EXPLORATION SESSION -->
-<section class="section section--cream">
-  <div class="container narrow reveal">
-    <span class="eyebrow">Where It Begins</span>
-    <div class="session-card">
-      <div class="session-card__header">
-        <p class="session-card__eyebrow">First Session</p>
-        <h2 class="session-card__title">Exploration Session</h2>
-        <p class="session-card__meta">60 minutes &nbsp;&middot;&nbsp; 1:1 &nbsp;&middot;&nbsp; in-person or virtual</p>
-        <p class="session-card__price">$110</p>
-      </div>
-      <div class="session-card__body">
-        <p>This first session is not a casual introduction. It is the beginning of your work.</p>
-        <p>We use this time to understand what is already active within you, what is trying to emerge, and what kind of support would actually serve your development. Many people come into this work already experiencing intuitive signals, energetic sensitivity, spontaneous channeling, or a sense that something is &ldquo;opening&rdquo; without knowing how to structure or trust it. This session helps bring clarity to that experience.</p>
-        <p>We&rsquo;ll explore your experiences, the abilities you already sense within yourself, what has been naturally emerging, and what you are most curious to develop.</p>
-        <div class="session-card__outcomes">
-          <h4>By the end you will have clarity on</h4>
-          <ul>
-            <li>What is already active in your system</li>
-            <li>What direction your development is naturally moving toward</li>
-            <li>What practices would support you right now</li>
-            <li>Whether continued mentorship would be supportive for you</li>
-          </ul>
-        </div>
-        <p style="margin-top:1.5rem;"><em>If you choose to continue, this session becomes the foundation for your personalized 5-week mentorship. If you choose not to, you still leave with clarity, language for your experience, and a grounded sense of next steps.</em></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SYMBOL DIVIDER -->
-<div class="container">
-  <div class="symbol-divider">
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--gold)" stroke-width="1"><polygon points="10,1 19,17 1,17"/><polygon points="10,19 1,3 19,3"/></svg>
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--peri-mid)" stroke-width="1"><circle cx="9" cy="9" r="7.5"/><circle cx="9" cy="9" r="3"/><line x1="9" y1="1.5" x2="9" y2="4.5"/><line x1="9" y1="13.5" x2="9" y2="16.5"/><line x1="1.5" y1="9" x2="4.5" y2="9"/><line x1="13.5" y1="9" x2="16.5" y2="9"/></svg>
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--gold)" stroke-width="1"><polygon points="10,1 19,17 1,17"/><polygon points="10,19 1,3 19,3"/></svg>
-  </div>
-</div>
-
-<!-- 5-WEEK MENTORSHIP -->
-<section class="section section--gold-pale">
-  <div class="container narrow">
+<div class="hero">
+  <div class="page">
     <div class="reveal">
-      <span class="eyebrow">The Full Journey</span>
-      <div class="session-card">
-        <div class="session-card__header">
-          <p class="session-card__eyebrow">The Mentorship</p>
-          <h2 class="session-card__title">The 5-Week Private Mentorship</h2>
-          <p class="session-card__meta">Five weeks &nbsp;&middot;&nbsp; Five private 2-hour sessions &nbsp;&middot;&nbsp; Between-session support</p>
-          <p class="session-card__price">$1,100</p>
-        </div>
-        <div class="session-card__body">
-          <p>This is where we move from curiosity into practice. Over five weeks, we meet privately once a week for approximately two hours. Each week builds upon the one before it, combining teaching, experiential practice, conversation, and personalized exercises for you to explore between sessions.</p>
-          <p><em>This is not simply information to learn. You practice it. You experience it. You begin discovering how it works through you.</em></p>
-        </div>
+      <div class="sym" style="padding:0 0 1.5rem; justify-content:center; max-width:200px; margin:0 auto;">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="var(--peri-pale)"><path d="M7 1C3.69 1 1 3.69 1 7s2.69 6 6 6c.6 0 1.17-.09 1.71-.24C6.88 11.9 5.5 9.63 5.5 7c0-2.76 1.57-5.16 3.87-6.34A5.97 5.97 0 0 0 7 1z"/></svg>
+        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="var(--gold)" stroke-width="1"><polygon points="8.5,1 16,15 1,15"/><polygon points="8.5,16 1,2 16,2"/></svg>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="var(--peri-pale)"><path d="M7 1C3.69 1 1 3.69 1 7s2.69 6 6 6c.6 0 1.17-.09 1.71-.24C6.88 11.9 5.5 9.63 5.5 7c0-2.76 1.57-5.16 3.87-6.34A5.97 5.97 0 0 0 7 1z"/></svg>
       </div>
+      <span class="hero__eyebrow">Kate Edelstein &nbsp;&middot;&nbsp; SERPRANA &nbsp;&middot;&nbsp; Nosara, Costa Rica</span>
+      <h1 class="hero__title">Intuitive &amp; Energetic<br>Development Mentorship</h1>
+      <p class="hero__sub">A private 1:1 mentorship for those who feel the energy moving through their hands and are ready to learn how to work with it in a grounded, intentional way.</p>
+      <a href="https://wa.me/50765652565" target="_blank" rel="noopener" class="btn btn--gold">Begin with a conversation &rarr;</a>
     </div>
-
-    <!-- WEEK BY WEEK -->
-    <div style="margin-top:3rem;">
-
-      <div class="week reveal">
-        <div class="week__num">
-          <span class="week__num-label">Week</span>
-          <span class="week__num-digit">1</span>
-          <div class="week__symbol">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="var(--gold)" stroke-width="1"><circle cx="11" cy="11" r="9"/><line x1="11" y1="2" x2="11" y2="20"/><line x1="2" y1="11" x2="20" y2="11"/><line x1="4.4" y1="4.4" x2="17.6" y2="17.6"/><line x1="17.6" y1="4.4" x2="4.4" y2="17.6"/></svg>
-          </div>
-        </div>
-        <div>
-          <h3>Grounding + Energetic Protection</h3>
-          <p>Before we begin opening channels or exploring subtle energy, we create a foundation. We explore grounding practices, energetic boundaries, protection, clearing, and ways of intentionally opening and closing your energetic practice.</p>
-          <p>We also create an intention for your five-week journey and incorporate personalized Alqvimia energies into the opening of your container. You&rsquo;ll leave with grounding and protection practices to work with throughout the week.</p>
-        </div>
-      </div>
-
-      <div class="week reveal">
-        <div class="week__num">
-          <span class="week__num-label">Week</span>
-          <span class="week__num-digit">2</span>
-          <div class="week__symbol">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="var(--peri-mid)" opacity="0.7"><path d="M11 2C6.03 2 2 6.03 2 11s4.03 9 9 9c.9 0 1.76-.13 2.57-.37C10.6 18.37 8 14.98 8 11c0-4.25 2.89-7.83 6.82-8.86A8.96 8.96 0 0 0 11 2z"/></svg>
-          </div>
-        </div>
-        <div>
-          <h3>Intuition + Pendulum Work</h3>
-          <p>Before learning to channel, we begin developing your relationship with your own internal signals. We explore intuition, discernment, self-trust, and the ways your system communicates through subtle sensation, inner knowing, emotional clarity, and energetic response.</p>
-          <p>We also work with the pendulum as a tool for exploration and practice, including establishing your responses, learning how to ask clear questions, and recognizing when the pendulum is reflecting energy, expectation, or clarity.</p>
-        </div>
-      </div>
-
-      <div class="week reveal">
-        <div class="week__num">
-          <span class="week__num-label">Week</span>
-          <span class="week__num-digit">3</span>
-          <div class="week__symbol">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="var(--gold)" stroke-width="1"><polygon points="11,1 21,19 1,19"/><polygon points="11,21 1,3 21,3"/></svg>
-          </div>
-        </div>
-        <div>
-          <h3>Channeling</h3>
-          <p>With grounding, protection, and discernment underneath you, we begin exploring channeling more intentionally. We look at how you prepare yourself, set intention, create boundaries around the practice, open and close your channel, and begin recognizing the different ways information may come through.</p>
-          <p>We practice together and explore how channeling feels specifically for you, rather than trying to force your experience into someone else&rsquo;s framework. We also discuss discernment, responsibility, and working intentionally with whatever you experience.</p>
-        </div>
-      </div>
-
-      <div class="week reveal">
-        <div class="week__num">
-          <span class="week__num-label">Week</span>
-          <span class="week__num-digit">4</span>
-          <div class="week__symbol">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="var(--peri-mid)" stroke-width="1"><circle cx="11" cy="11" r="9"/><circle cx="11" cy="11" r="4"/><line x1="11" y1="2" x2="11" y2="7"/><line x1="11" y1="15" x2="11" y2="20"/><line x1="2" y1="11" x2="7" y2="11"/><line x1="15" y1="11" x2="20" y2="11"/></svg>
-          </div>
-        </div>
-        <div>
-          <h3>Light Language + Soul Expression</h3>
-          <p>This week is about opening the voice as a channel for energy, expression, and non-linear communication. We begin with breath, sound, and vocal release practices that help soften control and loosen the habitual patterns of the thinking mind.</p>
-          <p>From there, we explore light language, a form of intuitive vocal expression that arises from energetic and soul-level connection rather than learned linguistic structure. We focus on connecting with your soul language, the unique energetic signature of expression that already exists within you.</p>
-        </div>
-      </div>
-
-      <div class="week reveal">
-        <div class="week__num">
-          <span class="week__num-label">Week</span>
-          <span class="week__num-digit">5</span>
-          <div class="week__symbol">
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="var(--peri-mid)" opacity="0.7"><path d="M11 2C6.03 2 2 6.03 2 11s4.03 9 9 9c.9 0 1.76-.13 2.57-.37C10.6 18.37 8 14.98 8 11c0-4.25 2.89-7.83 6.82-8.86A8.96 8.96 0 0 0 11 2z"/></svg>
-          </div>
-        </div>
-        <div>
-          <h3>Energy Work + Clearing</h3>
-          <p>Our final week brings the previous practices together through energetic awareness and self-practice. We explore sensing and scanning your own body, noticing areas that feel dense, activated, or stuck, and experimenting with different ways of moving and clearing energy.</p>
-          <p>We also explore energetic hygiene, clearing after intense experiences, and practices for returning to yourself. The emphasis begins with your own energy first, creating a strong personal foundation. From there, we gently explore how this awareness can extend outward into working energetically with others.</p>
-          <p>We close by reflecting on what has opened for you, which practices feel most natural, and where you feel called to continue developing.</p>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- BETWEEN-SESSION SUPPORT -->
-    <div class="support-block reveal">
-      <h3>Between-Session Support</h3>
-      <p>The mentorship includes messaging support throughout our five weeks together. This space is specifically for questions and guidance related to the practices you are exploring between sessions.</p>
-      <p>Because much of this work happens through experience, questions often arise once you begin practicing on your own. Rather than waiting until our next session, you have support as you integrate what is unfolding.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- SYMBOL DIVIDER -->
-<div class="container">
-  <div class="symbol-divider">
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="var(--peri-mid)"><path d="M8 1C4.13 1 1 4.13 1 8s3.13 7 7 7c.6 0 1.17-.09 1.71-.24C6.88 11.9 5.5 9.63 5.5 7c0-2.76 1.57-5.16 3.87-6.34A5.97 5.97 0 0 0 8 1z"/></svg>
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--gold)" stroke-width="1"><polygon points="10,1 19,17 1,17"/><polygon points="10,19 1,3 19,3"/></svg>
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--peri-mid)" stroke-width="1"><circle cx="9" cy="9" r="7.5"/><circle cx="9" cy="9" r="2.5" fill="rgba(196,184,232,0.4)"/></svg>
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--gold)" stroke-width="1"><polygon points="10,1 19,17 1,17"/><polygon points="10,19 1,3 19,3"/></svg>
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="var(--peri-mid)"><path d="M8 1C4.13 1 1 4.13 1 8s3.13 7 7 7c.6 0 1.17-.09 1.71-.24C6.88 11.9 5.5 9.63 5.5 7c0-2.76 1.57-5.16 3.87-6.34A5.97 5.97 0 0 0 8 1z"/></svg>
   </div>
 </div>
 
-<!-- CONTINUING -->
-<section class="section section--peri">
-  <div class="container narrow reveal">
-    <span class="eyebrow">After the Mentorship</span>
-    <h2 style="font-family:var(--font-display);font-style:italic;font-weight:400;font-size:clamp(1.5rem,2.5vw,2rem);color:var(--peri-deep);margin-bottom:1rem;">Continuing Your Development</h2>
-    <p style="color:var(--ink-soft);max-width:52ch;margin-bottom:0;line-height:1.7;">Five weeks may give you a strong foundation, but it often reveals where you naturally want to go deeper. After completing the mentorship, you can continue working together in a way that supports your individual path.</p>
-    <div class="continue-grid">
-      <div class="continue-card">
-        <p class="continue-card__price">$110</p>
-        <p class="continue-card__title">Exploration Session</p>
-        <p class="continue-card__meta">60 minutes</p>
-        <p>The entry point. Understand what is active in your system and where your development is naturally moving.</p>
+<!-- MAIN CONTENT -->
+<div class="page">
+
+  <!-- INVITATION -->
+  <div class="section reveal">
+    <span class="label">An Invitation</span>
+    <h2 class="section-title">&ldquo;You&rsquo;re not looking for someone to convince you that this world exists. There is already a knowing within you.&rdquo;</h2>
+    <p>This mentorship is for those who already feel a connection to channeling, energy work, and their intuitive or energetic abilities, and are ready to learn how to work with them in a grounded, intentional way.</p>
+    <p>You may not know where to begin, how to develop those abilities, or how to navigate them responsibly. What you&rsquo;re looking for is guidance. A space to explore, ask questions, learn foundational practices, and develop greater confidence and discernment.</p>
+    <p>Together, we can explore practices such as grounding, energetic protection and clearing, channeling, light language, connecting with spirit, moving and sensing energy, energetic boundaries, discernment, pendulum work, and strengthening your intuition, with the work personalized around what is naturally opening for you.</p>
+    <p>This is less about following a rigid spiritual system and more about helping you develop your own relationship with your abilities, with grounding, responsibility, discernment, and self-trust at the foundation.</p>
+  </div>
+
+  <!-- SYMBOL -->
+  <div class="sym">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="var(--peri-pale)"><path d="M7 1C3.69 1 1 3.69 1 7s2.69 6 6 6c.6 0 1.17-.09 1.71-.24C6.88 11.9 5.5 9.63 5.5 7c0-2.76 1.57-5.16 3.87-6.34A5.97 5.97 0 0 0 7 1z"/></svg>
+    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="var(--gold)" stroke-width="1"><polygon points="8.5,1 16,15 1,15"/><polygon points="8.5,16 1,2 16,2"/></svg>
+    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="var(--peri-pale)" stroke-width="1"><circle cx="7.5" cy="7.5" r="6.5"/><circle cx="7.5" cy="7.5" r="2.5" fill="rgba(155,138,196,0.3)"/></svg>
+    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="var(--gold)" stroke-width="1"><polygon points="8.5,1 16,15 1,15"/><polygon points="8.5,16 1,2 16,2"/></svg>
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="var(--peri-pale)"><path d="M7 1C3.69 1 1 3.69 1 7s2.69 6 6 6c.6 0 1.17-.09 1.71-.24C6.88 11.9 5.5 9.63 5.5 7c0-2.76 1.57-5.16 3.87-6.34A5.97 5.97 0 0 0 7 1z"/></svg>
+  </div>
+
+  <!-- EXPLORATION SESSION -->
+  <div class="section reveal">
+    <span class="label">Where It Begins</span>
+    <h2 class="section-title">Begin With an Exploration Session</h2>
+
+    <div class="price-block">
+      <p class="price-block__name">Exploration Session</p>
+      <p class="price-block__meta">60 minutes &nbsp;&middot;&nbsp; 1:1 &nbsp;&middot;&nbsp; in-person or virtual</p>
+      <p class="price-block__price">$110</p>
+      <p>This first session is not a casual introduction. It is the beginning of your work.</p>
+    </div>
+
+    <p>We use this time to understand what is already active within you, what is trying to emerge, and what kind of support would actually serve your development. Many people come into this work already experiencing intuitive signals, energetic sensitivity, spontaneous channeling, or a sense that something is &ldquo;opening&rdquo; without knowing how to structure or trust it. This session helps bring clarity to that experience.</p>
+    <p>We&rsquo;ll explore your experiences, the abilities you already sense within yourself, what has been naturally emerging, and what you are most curious to develop. I&rsquo;ll also share how I work, the principles behind this mentorship, and what it looks like to develop these abilities in a grounded and sustainable way.</p>
+
+    <h3 class="sub-title">By the end of this session, you will have a clearer understanding of:</h3>
+    <ul class="list">
+      <li>What is already active in your system</li>
+      <li>What direction your development is naturally moving toward</li>
+      <li>What practices would support you right now</li>
+      <li>Whether continued mentorship would be supportive for you</li>
+    </ul>
+
+    <p><em>If you choose to continue, this session becomes the foundation for your personalized 5-week mentorship. If you choose not to, you still leave with clarity, language for your experience, and a grounded sense of next steps.</em></p>
+  </div>
+
+  <!-- SYMBOL -->
+  <div class="sym">
+    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="var(--peri-pale)" stroke-width="1"><circle cx="7.5" cy="7.5" r="6.5"/><line x1="7.5" y1="1" x2="7.5" y2="14"/><line x1="1" y1="7.5" x2="14" y2="7.5"/></svg>
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="var(--peri-pale)"><path d="M7 1C3.69 1 1 3.69 1 7s2.69 6 6 6c.6 0 1.17-.09 1.71-.24C6.88 11.9 5.5 9.63 5.5 7c0-2.76 1.57-5.16 3.87-6.34A5.97 5.97 0 0 0 7 1z"/></svg>
+    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="var(--peri-pale)" stroke-width="1"><circle cx="7.5" cy="7.5" r="6.5"/><line x1="7.5" y1="1" x2="7.5" y2="14"/><line x1="1" y1="7.5" x2="14" y2="7.5"/></svg>
+  </div>
+
+  <!-- 5-WEEK MENTORSHIP -->
+  <div class="section reveal">
+    <span class="label">The Full Journey</span>
+    <h2 class="section-title">The 5-Week Private Mentorship</h2>
+
+    <div class="price-block">
+      <p class="price-block__name">Five Private 2-Hour Sessions</p>
+      <p class="price-block__meta">Five weeks &nbsp;&middot;&nbsp; Between-session messaging support included</p>
+      <p class="price-block__price">$1,100</p>
+    </div>
+
+    <p>This is where we move from curiosity into practice. Over five weeks, we meet privately once a week for approximately two hours. Each week builds upon the one before it, combining teaching, experiential practice, conversation, and personalized exercises for you to explore between sessions.</p>
+    <p><em>This is not simply information to learn. You practice it. You experience it. You begin discovering how it works through you.</em></p>
+    <p>You&rsquo;ll also have between-session messaging support for questions that arise specifically around your weekly practices.</p>
+  </div>
+
+  <!-- WEEKS -->
+  <div class="section reveal">
+    <span class="label">Week by Week</span>
+
+    <div class="week">
+      <div class="week__num">
+        <span>1</span>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.6"><circle cx="9" cy="9" r="7.5"/><line x1="9" y1="1.5" x2="9" y2="16.5"/><line x1="1.5" y1="9" x2="16.5" y2="9"/><line x1="3.7" y1="3.7" x2="14.3" y2="14.3"/><line x1="14.3" y1="3.7" x2="3.7" y2="14.3"/></svg>
       </div>
-      <div class="continue-card">
-        <p class="continue-card__price">$220</p>
-        <p class="continue-card__title">Continued Development Session</p>
-        <p class="continue-card__meta">2 hours &nbsp;&middot;&nbsp; 1:1</p>
-        <p>A private session focused on whatever you are currently exploring or experiencing. No predetermined curriculum.</p>
-      </div>
-      <div class="continue-card">
-        <p class="continue-card__price">$600</p>
-        <p class="continue-card__title">3-Session Container</p>
-        <p class="continue-card__meta">Three 2-hour sessions</p>
-        <p>More space to deepen into a particular area or continue following what is naturally unfolding, personalized around your development.</p>
+      <div>
+        <h3>Grounding + Energetic Protection</h3>
+        <p>Before we begin opening channels or exploring subtle energy, we create a foundation. We explore grounding practices, energetic boundaries, protection, clearing, and ways of intentionally opening and closing your energetic practice. We also create an intention for your five-week journey and incorporate personalized Alqvimia energies into the opening of your container.</p>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- CLOSING -->
-<section class="closing">
-  <div class="container">
-    <div class="symbol-divider" style="margin-bottom:3.5rem;">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="var(--peri-mid)"><path d="M8 1C4.13 1 1 4.13 1 8s3.13 7 7 7c.6 0 1.17-.09 1.71-.24C6.88 11.9 5.5 9.63 5.5 7c0-2.76 1.57-5.16 3.87-6.34A5.97 5.97 0 0 0 8 1z"/></svg>
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--gold)" stroke-width="1"><polygon points="10,1 19,17 1,17"/><polygon points="10,19 1,3 19,3"/></svg>
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="var(--peri-mid)"><path d="M8 1C4.13 1 1 4.13 1 8s3.13 7 7 7c.6 0 1.17-.09 1.71-.24C6.88 11.9 5.5 9.63 5.5 7c0-2.76 1.57-5.16 3.87-6.34A5.97 5.97 0 0 0 8 1z"/></svg>
+    <div class="week">
+      <div class="week__num">
+        <span>2</span>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="var(--peri-pale)" opacity="0.6"><path d="M9 1.5C5.27 1.5 2.25 4.52 2.25 8.25S5.27 15 9 15c.67 0 1.32-.1 1.93-.28C8.34 13.53 6.75 11.06 6.75 8.25c0-2.97 2.02-5.47 4.77-6.18A7.44 7.44 0 0 0 9 1.5z"/></svg>
+      </div>
+      <div>
+        <h3>Intuition + Pendulum Work</h3>
+        <p>Before learning to channel, we begin developing your relationship with your own internal signals. We explore intuition, discernment, self-trust, and the ways your system communicates through subtle sensation, inner knowing, emotional clarity, and energetic response. We also work with the pendulum as a tool for exploration and practice, including establishing your responses, learning how to ask clear questions, and recognizing when the pendulum is reflecting energy, expectation, or clarity.</p>
+      </div>
     </div>
-    <h2 class="closing__title reveal">Your Abilities. Your Practice. Your Relationship With Them.</h2>
-    <p class="closing__sub reveal">My role is not to define your path for you. It is to give you a grounded space to explore, practices to experiment with, and mentorship as you begin discovering how these abilities express themselves through you.</p>
-    <a href="https://wa.me/50765652565" target="_blank" rel="noopener" class="closing__cta reveal">
-      Start with the Exploration Session &nbsp;&middot;&nbsp; $110
-    </a>
-    <p class="closing__alt reveal">Questions first? <a href="https://wa.me/50765652565" target="_blank" rel="noopener">Message Kate on WhatsApp</a></p>
-  </div>
-</section>
 
-<!-- FOOTER -->
+    <div class="week">
+      <div class="week__num">
+        <span>3</span>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.6"><polygon points="9,1 17,16 1,16"/><polygon points="9,17 1,2 17,2"/></svg>
+      </div>
+      <div>
+        <h3>Channeling</h3>
+        <p>With grounding, protection, and discernment underneath you, we begin exploring channeling more intentionally. We look at how you prepare yourself, set intention, create boundaries around the practice, open and close your channel, and begin recognizing the different ways information may come through. We practice together and explore how channeling feels specifically for you rather than trying to force your experience into someone else&rsquo;s framework. We also discuss discernment, responsibility, and working intentionally with whatever you experience.</p>
+      </div>
+    </div>
+
+    <div class="week">
+      <div class="week__num">
+        <span>4</span>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="var(--peri-pale)" stroke-width="1" opacity="0.6"><circle cx="9" cy="9" r="7.5"/><circle cx="9" cy="9" r="3.5"/><line x1="9" y1="1.5" x2="9" y2="5.5"/><line x1="9" y1="12.5" x2="9" y2="16.5"/><line x1="1.5" y1="9" x2="5.5" y2="9"/><line x1="12.5" y1="9" x2="16.5" y2="9"/></svg>
+      </div>
+      <div>
+        <h3>Light Language + Soul Expression</h3>
+        <p>This week is about opening the voice as a channel for energy, expression, and non-linear communication. We begin with breath, sound, and vocal release practices that help soften control and loosen the habitual patterns of the thinking mind. From there, we explore what is often referred to as light language, a form of intuitive vocal expression that arises from energetic and soul-level connection rather than learned linguistic structure. We focus on connecting with your soul language, the unique energetic signature of expression that already exists within you.</p>
+      </div>
+    </div>
+
+    <div class="week">
+      <div class="week__num">
+        <span>5</span>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="var(--peri-pale)" opacity="0.6"><path d="M9 1.5C5.27 1.5 2.25 4.52 2.25 8.25S5.27 15 9 15c.67 0 1.32-.1 1.93-.28C8.34 13.53 6.75 11.06 6.75 8.25c0-2.97 2.02-5.47 4.77-6.18A7.44 7.44 0 0 0 9 1.5z"/></svg>
+      </div>
+      <div>
+        <h3>Energy Work + Clearing</h3>
+        <p>Our final week brings many of the previous practices together through energetic awareness and self-practice. We explore sensing and scanning your own body, noticing areas that feel dense, activated, stuck, or tangled, and experimenting with different ways of moving and clearing energy. We also explore energetic hygiene, clearing after intense experiences, and practices for returning to yourself. The emphasis begins with your own energy first, creating a strong personal foundation. From there, we gently explore how this awareness can extend outward into working energetically with others.</p>
+        <p>We close by reflecting on what has opened for you, what you&rsquo;ve learned about yourself, which practices feel most natural, and where you feel called to continue developing.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BETWEEN SESSION SUPPORT -->
+  <div class="section reveal">
+    <span class="label">Between Sessions</span>
+    <h2 class="section-title">Messaging Support</h2>
+    <p>The mentorship includes messaging support throughout our five weeks together. This space is specifically for questions and guidance related to the practices you are exploring between sessions.</p>
+    <p>Because much of this work happens through experience, questions often arise once you begin practicing on your own. Rather than waiting until our next session, you have support as you integrate what is unfolding.</p>
+    <p><em>Messaging support is not intended to replace our sessions or provide on-demand or emergency support. Deeper exploration and processing are held within our scheduled time together.</em></p>
+  </div>
+
+  <!-- SYMBOL -->
+  <div class="sym">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="var(--peri-pale)"><path d="M7 1C3.69 1 1 3.69 1 7s2.69 6 6 6c.6 0 1.17-.09 1.71-.24C6.88 11.9 5.5 9.63 5.5 7c0-2.76 1.57-5.16 3.87-6.34A5.97 5.97 0 0 0 7 1z"/></svg>
+    <svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="var(--gold)" stroke-width="1"><polygon points="8.5,1 16,15 1,15"/><polygon points="8.5,16 1,2 16,2"/></svg>
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="var(--peri-pale)"><path d="M7 1C3.69 1 1 3.69 1 7s2.69 6 6 6c.6 0 1.17-.09 1.71-.24C6.88 11.9 5.5 9.63 5.5 7c0-2.76 1.57-5.16 3.87-6.34A5.97 5.97 0 0 0 7 1z"/></svg>
+  </div>
+
+  <!-- CONTINUING -->
+  <div class="section reveal">
+    <span class="label">After the Mentorship</span>
+    <h2 class="section-title">Continuing Your Development</h2>
+    <p>Five weeks may give you a strong foundation, but it often reveals where you naturally want to go deeper. After completing the mentorship, you can continue working with me in a way that supports your individual path.</p>
+
+    <div class="price-block">
+      <p class="price-block__name">Individual Continued Development Session</p>
+      <p class="price-block__meta">2 hours &nbsp;&middot;&nbsp; 1:1</p>
+      <p class="price-block__price">$220</p>
+      <p>A private session focused on whatever you are currently exploring, developing, or experiencing. No predetermined curriculum. We meet you where you are and work with what is most relevant at that time.</p>
+    </div>
+
+    <div class="price-block">
+      <p class="price-block__name">3-Session Continued Development Container</p>
+      <p class="price-block__meta">Three private 2-hour sessions</p>
+      <p class="price-block__price">$600</p>
+      <p>For those who want continued support, this option gives us more space to deepen into a particular area or continue following what is naturally unfolding. The three sessions are personalized around your development rather than following the foundational curriculum.</p>
+    </div>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="closing reveal">
+    <div class="sym" style="margin-bottom:1.5rem;">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="var(--peri-pale)"><path d="M7 1C3.69 1 1 3.69 1 7s2.69 6 6 6c.6 0 1.17-.09 1.71-.24C6.88 11.9 5.5 9.63 5.5 7c0-2.76 1.57-5.16 3.87-6.34A5.97 5.97 0 0 0 7 1z"/></svg>
+      <svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="var(--gold)" stroke-width="1"><polygon points="8.5,1 16,15 1,15"/><polygon points="8.5,16 1,2 16,2"/></svg>
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="var(--peri-pale)" stroke-width="1"><circle cx="7.5" cy="7.5" r="6.5"/><circle cx="7.5" cy="7.5" r="2.5" fill="rgba(155,138,196,0.3)"/></svg>
+      <svg width="17" height="17" viewBox="0 0 17 17" fill="none" stroke="var(--gold)" stroke-width="1"><polygon points="8.5,1 16,15 1,15"/><polygon points="8.5,16 1,2 16,2"/></svg>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="var(--peri-pale)"><path d="M7 1C3.69 1 1 3.69 1 7s2.69 6 6 6c.6 0 1.17-.09 1.71-.24C6.88 11.9 5.5 9.63 5.5 7c0-2.76 1.57-5.16 3.87-6.34A5.97 5.97 0 0 0 7 1z"/></svg>
+    </div>
+    <h2>Your Abilities. Your Practice. Your Relationship With Them.</h2>
+    <p>My role is not to define your path for you. It is to give you a grounded space to explore, practices to experiment with, questions to consider, and mentorship as you begin discovering how these abilities express themselves through you.</p>
+    <a href="https://wa.me/50765652565" target="_blank" rel="noopener" class="btn btn--gold">Start with the Exploration Session &nbsp;&middot;&nbsp; $110</a>
+    <p class="closing__alt">Questions first? <a href="https://wa.me/50765652565" target="_blank" rel="noopener">Message Kate on WhatsApp</a></p>
+  </div>
+
+</div><!-- end .page -->
+
 <footer class="footer">
   <div class="footer__inner">
     <span>SERPRANA &nbsp;&middot;&nbsp; Playa Pelada, Nosara, Costa Rica</span>
@@ -515,7 +350,7 @@
 <script>
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 </script>
 </body>
